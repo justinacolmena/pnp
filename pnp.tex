@@ -72,9 +72,10 @@ placement = htp
 
 %\grammarindent=80pt
 \usepackage{scalerel}
-\usepackage[svgpath=images/]{svg}
 \usepackage{graphicx}
-\graphicspath{ {images/} }
+\graphicspath{{images/}}
+\usepackage[svgpath=images/]{svg}
+
 \usepackage{float}
 
 \newsavebox\Volleyball
@@ -230,7 +231,7 @@ If $O$ is an oracle, that is, any arbitrary language of strings over $\Sigma$, t
 \end{definition}
 
 \subsubsection{The Baker--Gill--Solovay oracles}\label{bgs}
-Baker, Gill, and Solovay  discovered recursive oracles $A$ and $B$, such that $P^A=NP^A$ and $P^B\ne NP^B$.  For the proofs we refer to the original paper \cite{baker1975relativizations} and to various university lecture notes available online \cite{spielman2001adv, feigenbaum2010bgs,holenstein2010complex,moshkovitz2012rel}. We remark that $A$ is a powerful oracle such that $P^A=NP^A=EXP$, that $B$ involves a clever use of diagonalization in its construction, and that both $A$ and $B$ belong to the class $PR$ of primitive recursive languages, that is, languages that can be decided by a primitive recursive function \cite{robinson1950general}.
+Baker, Gill, and Solovay discovered recursive oracles $A$ and $B$, such that $P^A=NP^A$ and $P^B\ne NP^B$.  The major significance of this result is that no method of proof which relativizes to oracles can resolve the $P$~vs.~$NP$ question.  For the proofs we refer to the original paper \cite{baker1975relativizations} and to various university lecture notes available online \cite{spielman2001adv, feigenbaum2010bgs,holenstein2010complex,moshkovitz2012rel}.  Here we present our versions of their basic constructions and leave the details as exercises for the reader.  We remark that $A$ is a powerful oracle such that $P^A=NP^A=EXP$, that $B$ involves a clever use of diagonalization in its construction, and that both $A$ and $B$ belong to the class $PR$ of primitive recursive languages, that is, languages that can be decided by a primitive recursive function \cite{robinson1950general}.
 \begin{definition}\label{bgsa}
 The BGS oracle $A$ is sometimes called $EXPCOM$. Let $\big(\Gamma(m)\big)_{m\in\mathbb N}$ be an acceptable enumeration of deterministic Turing machines, and let ``$1^n\,$'' represent a string of $n$ $1$s.
 \begin{equation}
@@ -343,11 +344,15 @@ Hartmanis and Hopcroft \cite{hartmanis1976independence} \cite[\S 2, pp.~5--7]{tr
 \end{quote}
 Except for a survey by Scott Aaronson \cite{aaronsonp}, this possibility has received little attention or further study:  by far the majority of the research effort expended on the $P$ vs. $NP$ problem has had as its object an attempt to prove $P\ne NP$, in an almost unshaken conviction that this really is the case and that there really is some way to prove it.  Notwithstanding, the investigation of a certain modification of the Hartmanis--Hopcroft ``independent'' oracle is to be the object of our present research.
 
-\subsubsection{Natural proofs}
+\subsubsection{Natural proofs and Boolean complexity}
 We do not pretend to understand ``natural proofs'' in the context of Razborov and Rudich, and the Boolean circuit complexity theory on which they are based is unfortunately outside our area of expertise; at the same time we would be remiss if we were to omit mention of their award-winning \cite{kehoe2007prize} paper \cite{razborov1997natural}.  Our first impression of the general gist of their research is that they showed that if one-way functions exist, and in fact $P\ne NP$, then it will be very difficult, if even possible, to actually prove $P\ne NP$: in other words, an award-winning negative result in the context of the prevailing direction of research into the $P$ vs.\ $NP$ problem.
+
+Another paper \cite{blum2017} has appeared on \href{https://arxiv.org/}{arXiv} claiming a solution to the ``P versus NP Problem,'' also apparently on the basis of Boolean complexity theory. This author claims a result that \mbox{$P\ne NP$}. We remain unconvinced of exponential lower bound proofs of time complexity for computational problems, but at the same time, there seems to be a group of researchers following a certain line of reasoning. We do not wish to discourage them, but we would like to see a ``primer'' or a more solid theoretical foundation based on theorem and proof --- as especially in the case of the Razborov and Rudich paper \cite{razborov1997natural} the claims made by the authors seem a little bit too elusive to nail down to precise logical propositions which may be rigorously stated in the language of set theory.
 
 \subsubsection{The Millennium Prize}
 At the turn of the millennium, the Clay Mathematics Institute \cite{claymath} offered prizes \cite{claymath-millenium-prize} of \$1,000,000 (USD) each for the solutions of seven outstanding mathematical problems, among them the $P$ vs.\ $NP$ problem considered herein, which are deemed especially important to the mathematical community.  There are official problem descriptions, e.g.~\cite{claymath-pnp-problem-description}, rules \cite{claymath-millennium-prize-rules}, notes on the rules \cite{claymath-notes-on-rules}, and publication guidelines \cite{claymath-publication-guidelines}. There is a markedly patronizing and exclusive air about the whole thing.  Furthermore, the offer of a \$1,000,000 sweepstakes-style prize, the broad dismissal of ``amateur'' research, and the open mockery even of professional and academic research, have created a very cramped and limited hang-out for discussion of these important mathematical problems, and as a consequence the development of our understanding of these important mathematical problems has stagnated in the open literature in recent years.
+
+Our suspicions of the Millennium Prize are further raised by the fact that no money has actually been paid out as offered for the one problem that is widely acknowledged as solved \cite{perelman2002,perelman2003,perelman2003-2,rianovosti2010}.
 
 We note that a showing of independence of the problem does not qualify for the prize according to the official rules: only a proof or disproof of the conjecture $P\ne NP$.  At the same time, it is important to note that we cannot at this time rule out the existence of an unconditional proof or disproof of the conjecture $P\ne NP$ according to our present understanding of set theory, despite our attempts to do so, which we have documented in this paper.
 
