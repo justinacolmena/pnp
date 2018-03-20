@@ -10,7 +10,7 @@
 \settimeformat{ampmtime}
 \pagestyle{fancy}
 \newcommand{\myfooters}{
-\rfoot{\small electronic mail\\ \url{mailto:justina@colmena.biz?subject=P_vs._NP}}
+\rfoot{\small electronic mail\\ \url{mailto:justina@colmena.biz?subject=P_vs_NP}}
 \cfoot{\small \textbf{[\begin{NoHyper}Page\ \thepage\ of\ \pageref{LastPage}\end{NoHyper}]}}
 \lfoot{\small justina colmena\\\today\ @\currenttime}
 \renewcommand{\footrulewidth}{\headrulewidth}
@@ -97,7 +97,7 @@ placement = htp
 \declaretheorem[sibling=theorem,style=definition,qed={\Circumlocution}]{circumlocution}
 \newcommand{\Construction}{{\large\dsmathematical}}
 \declaretheorem[sibling=theorem,style=definition,qed={\Construction}]{construction}
-\newcommand{\Remark}{\raisebox{-0.125ex}{\large\Info}}
+\newcommand{\Remark}{\raisebox{-0.125ex}{\large\Coffeecup}}
 \declaretheorem[numbered=no,style=remark,qed={\Remark}]{remark}
 \newcommand{\Exercise}{\raisebox{-0.75ex}[0ex][0ex]{\scaleto{\usebox{\Volleyball}}{3ex}}}
 \declaretheorem[style=remark,qed={\Exercise}]{exercise}
@@ -515,6 +515,9 @@ The equivalences (\ref{fehq0}) and (\ref{fehnq0}) follow from (\ref{seh}); (\ref
 \begin{remark}
 As to the $P$ vs.\ $NP$ question, there is no loss of generality in adjoining the postulate $E^H$ to the axioms of $F$, for if this question is independent of $F$, then it is also independent of $F+E^H$. That is, if we can prove in $F$ that neither  $F+E^H\vdash P=NP$ nor $F+E^H\vdash P\ne NP$, unless $F+E^H$ is inconsistent, then we also have a valid proof in $F$ that neither $F\vdash P=NP$ nor $F\vdash P\ne NP$, unless $F$ is inconsistent.  The limitation remains that we cannot use the postulate $E^H$, without having proven it, to reason about the existence of proofs in $F$ or $F+E^H$, if we wish our reasoning to be valid in $F$ alone.
 \end{remark}
+
+
+
 
 \subsection{The liar's oracle \textit{J}}
 \subsubsection{Construction of \textit{J}}
@@ -1049,9 +1052,20 @@ Set
 	\end{equation}
 Then, for any $z$, if $(\exists x)(\exists y)\Omega_2(x,y,z)$, then
 	\begin{align}
-		x &= \bigcup \bigcap z;\\
-		y &= \bigcup \bigcup \operatorname{\backslash} 
+		x &= \bigcup \bigcap z;\label{pair1st}\\
+		y &= \bigcup \bigcap \left(\left\{\bigcup z\operatorname{\backslash}\bigcup z,\bigcap z\right\}\operatorname{\backslash}\{\emptyset\}\right).\label{pair2nd}
 	\end{align}
+	The first element of the pair (\ref{pair1st}) is trivial. The extraction of the second element of the ordered pair (\ref{pair2nd}) is somewhat more complicated.
+	\begin{equation}
+	\bigcup z \operatorname{\backslash}\bigcap z = \left\{\begin{array}{cr}
+	\{y\},&x\ne y;\\\emptyset,&x=y.
+	\end{array}\right.
+	\end{equation}
+	Now we have
+	\begin{equation}
+	\left\{\bigcup z\operatorname{\backslash}\bigcup z, \bigcap z\right\}\operatorname{\backslash}\{\emptyset\} = \{\{y\},\{x,y\}\},
+	\end{equation}
+	which is the reverse of the original ordered pair $(x,y)$, so in (\ref{pair2nd}) we extract the first element of $(y,x)$ with the same operation that we used in (\ref{pair1st}).
 \end{proof}
 \subsection{Axiom of choice}
 \begin{axiom}[Choice]\label{axiomchoice}
