@@ -56,30 +56,21 @@
 \usepackage{newfloat}
 %\usepackage{syntax}
 
-% declare the floating environment {Grammar}
-% this will also define \listofGrammars:
-\DeclareFloatingEnvironment[
-% the file extension for the file used to create the list:
-fileext   = logr,% don't use log here!
-% the heading for the list:
-listname  = {List of Grammars},
-% the name used in captions:
-name      = Grammar,
-% the default floating parameters if the environment is used
-% without optional argument:
-placement = htp
-]{Grammar}
-
 %\grammarindent=80pt
 \usepackage{scalerel}
 \usepackage{graphicx}
 \graphicspath{{images/}}
-\usepackage[svgpath=images/]{svg}
+\usepackage{svg}
+\renewcommand{\includesvg}[1]{%
+\immediate\write18
+ {inkscape --batch-process -D --export-latex #1.svg --export-filename=#1.pdf}%
+	\input{#1.pdf_tex}%
+}
 
 \usepackage{float}
 
 \newsavebox\Volleyball
-\savebox\Volleyball{\includesvg{b14f1090776e99712331d0c24973afc6}}
+\savebox\Volleyball{\includesvg{images/b14f1090776e99712331d0c24973afc6}}
 
 \newcommand{\Axiom}{{\large\Bearing}}
 \declaretheorem[numberwithin=section,qed={\Axiom}]{axiom}
@@ -117,7 +108,7 @@ placement = htp
 A somewhat whimsical investigation into the possibility of the formal independence of the $P$ vs.\ $NP$ question based on an oracle of Hartmanis and Hopcroft.
 \end{abstract}
 \begin{figure}
-	\includegraphics[width=1.0\textwidth]{guy_fawkes_mask.jpg}
+	\includegraphics[width=1.0\textwidth]{images/guy_fawkes_mask.jpg}
 	\caption[\texttt{(float)0x63/0x64}]{\texttt{(float)0x63/0x64} \cite{anon2012}}
 \end{figure}
 
@@ -127,7 +118,7 @@ A somewhat whimsical investigation into the possibility of the formal independen
 
 \phantomsection\addcontentsline{toc}{section}{List of Algorithms}\listofalgorithms
 
-\phantomsection\addcontentsline{toc}{section}{List of Grammars}\listofGrammars
+\phantomsection\addcontentsline{toc}{section}{List of Tables}\listoftables
 
 \section{Copyright}
 This work is placed in the public domain by its author.\footnote{\url{https://github.com/justinacolmena/pnp/blob/master/LICENSE}} Questions of attribution are academic, and not intended to be enforced by copyright law. The style of this document is mostly intended for working copy.  This author raises no objection to adaptation of this document or its style for commercial or other publication.  Other authors who wish to take a particular portion of this document and expand upon it at greater length into their own work are encouraged to do so. For this reason, \LaTeX\textsuperscript{\textregistered} source code\footnote{\url{https://github.com/justinacolmena/pnp}} is distributed with this original work.
@@ -146,7 +137,7 @@ This is a work in progress.
 Turing machines are named after Alan Turing (1912--1954), Figure~\ref{turing}, the British computer scientist and code-breaker who was chemically castrated as punishment for homosexuality in spite of his valiant efforts that were not only crucial to winning the war but of great scientific merit in peacetime, given the freedom that victory affords us to study his and others' related work.  An inquisition has yet to be made into the formal verdict of his death by suicide.
 \begin{figure}
 	\centering
-	\includegraphics[width=1\textwidth]{alan-turing-school-photo.jpg}
+	\includegraphics[width=1\textwidth]{images/alan-turing-school-photo.jpg}
 	\caption[Alan Turing]{Alan Turing as a school-child \cite{hodges2017}.}
 	\label{turing}
 \end{figure}
@@ -390,7 +381,7 @@ Q^O\quad\longleftrightarrow\quad P^O=NP^O.
 \label{lemmadelta}
 \begin{figure}
 	\centering
-	\includegraphics[width=0.40\textwidth]{Anonymous.png}
+	\includegraphics[width=0.40\textwidth]{images/Anonymous.png}
 	\caption[Examining the discrepancy]{Examining the discrepancy \cite{akshayhallur2014}.}\label{figdiscrepancy}
 \end{figure}
 If $U$ and $V$ are two oracles whose discrepancy (Figure~\ref{figdiscrepancy}), or symmetric set difference
@@ -807,11 +798,11 @@ If $|K|<\aleph_0$, then
 	\centering
 	\begin{minipage}{2in}
 		\centering
-		\includegraphics[width=1.5in]{PortraitZurich-sw-nb-300.jpg}
+		\includegraphics[width=1.5in]{images/PortraitZurich-sw-nb-300.jpg}
 	\end{minipage}
 	\begin{minipage}{2.25in}
 		\centering
-		\includegraphics[width=1.75in]{Adolf_Abraham_Halevi_Fraenkel.jpg}
+		\includegraphics[width=1.75in]{images/Adolf_Abraham_Halevi_Fraenkel.jpg}
 	\end{minipage}
 	\caption[Ernst Zermelo and Abraham Fraenkel]{Set theorists Ernst Friedrich Ferdinand Zermelo \cite{mildenberger2014}, left; and Abraham Halevi ``Adolf'' Fraenkel \cite{fraenkel-photo}, right.}\label{zfphoto}
 \end{figure}
@@ -851,7 +842,7 @@ Zermelo--Fraenkel set theory is a theory of well-founded sets named after the Ge
 	The entire $P$ vs.\ $NP$ question is the question of whether \mbox{$P=NP$} or \mbox{$P\subsetneqq NP$}, since we know that \mbox{$P\subset NP$}. 
 \end{remark}
 \subsection{Language of set theory}
-\begin{Grammar}
+\begin{table}
 \begin{bnf*}
 	\bnfprod{wff}
 		{\bnfpn{f5}}\\
@@ -903,7 +894,7 @@ Zermelo--Fraenkel set theory is a theory of well-founded sets named after the Ge
 		\bnfor \bnfsk}
 \end{bnf*}
 \caption{Context-free grammar for set theory}\label{settheorygrammar}
-\end{Grammar}
+\end{table}
 
 \begin{definition}
 A \textbf{well-formed formula} is best defined in Backus--Naur form as a context-free grammar as in Grammar~\ref{settheorygrammar}.
@@ -1160,7 +1151,7 @@ It is for this reason that proper classes are sometimes said to be ``too big'' t
 \section{Peano arithmetic}\label{sect-pa}
 \begin{figure}
 	\centering
-	\includegraphics[width=1.5in]{Giuseppe_Peano.jpg}
+	\includegraphics[width=1.5in]{images/Giuseppe_Peano.jpg}
 	\caption[Giuseppe Peano]{~\\Italian mathematician Giuseppe Peano \cite{peano-photo},\\godfather of ``Peano arithmetic.''}
 	\label{peanophoto}
 \end{figure}
@@ -1287,7 +1278,48 @@ When $m\leqq n$, we say that $m$ is \textbf{less than or equal to} $n$.  When $m
 In increasing order of consistency strength we have Robinson arithmetic $\mathbf Q$, primitive recursive arithmetic $\mathbf{PRA}$, Peano arithmetic $\mathbf{PA}$,  and Zermelo--Fraenkel set theory $\mathbf{ZF}$.  {\color{red}\textbf{???}} The relative strength of Quine's New Foundations theory $\mathbf{NF}$ seems to be unknown.
 \end{remark}
 \section{Propositional logic: Rules of inference}
-When we introduced axioms in the preceding sections, it is understood that such axioms are intended to serve as stable premises for logical conclusions which we call theorems. See, e.g., \cite{moura2010} for a list of some basic rules of inference that may be used to deduce theorems from the axioms of a given formal system.  In this paper, these are the rules of standard propositional logic \cite{klement0000}.  Additional rules may be necessary for special cases, e.g., introduction and elimination of universal and existential quantifiers \cite{prawitz2006}.
+\begin{table}[p]
+	\centering
+	\resizebox{\textwidth}{!}{
+\begin{tabular}{|c|c|c|c|c|c|}
+	\hline&&&&&\\
+	Operation & Symbol & Name & Type & Indroduction & Elimination 
+	\\&&&&&\\\hline\hline&&&&&\\
+	Verum & $\top$ & true & null
+	& $\dfrac{\textrm{(cælum)}}{\top}$ & $\dfrac{\top\longrightarrow p}{p}$
+	\\&&&&&\\\hline&&&&&\\
+	Falsum & $\bot$ & false & null
+	& $\dfrac{p\land\lnot p}{\bot}$ & $\dfrac{p\longrightarrow\bot}{\lnot p}$
+	\\&&&&&\\\hline&&&&&\\
+	Negation & $\lnot$ & not & unary
+	& $\dfrac{\left[\dfrac{p}{\bot}\right]}{\lnot p}$
+	& $\dfrac{\lnot p}{p\longrightarrow\bot}$
+	\\&&&&&\\\hline&&&&&\\
+	Conjunction & $\land$ & and & binary
+	& $\dfrac{p\qquad q}{p\land q}$
+	& $\dfrac{p\land q}{p}\qquad\dfrac{p\land q}{q}$
+	\\&&&&&\\\hline&&&&&\\
+	Disjuction & $\lor$ & or & binary
+	& $\dfrac{p}{p\lor q}\qquad\dfrac{q}{p\lor q}$
+	& $\dfrac{p\lor q\qquad \lnot q}{p}\qquad\dfrac{\lnot p\qquad p\lor q}{q}$
+	\\&&&&&\\\hline&&&&&\\
+	Condition & $\longleftarrow$ & if & binary
+	&$\dfrac{\left[\dfrac{q}{p}\right]}{p\longleftarrow q}$
+	&$\dfrac{p\longleftarrow q\qquad q}{p}$
+	\\&&&&&\\\hline&&&&&\\
+	Implication & $\longrightarrow$ & if/then & binary
+	&$\dfrac{\left[\dfrac{p}{q}\right]}{p\longrightarrow q}$
+	&$\dfrac{p\qquad p\longrightarrow q}{q}$
+	\\&&&&&\\\hline&&&&&\\
+	Equivalence & $\longleftrightarrow$ & if \& only if & binary
+	&$\dfrac{p\longleftarrow q\qquad p\longrightarrow q}{p\longleftrightarrow q}$
+	&$\dfrac{p\longleftrightarrow q}{p\longleftarrow q}\qquad\dfrac{p\longleftrightarrow q}{p\longrightarrow q}$
+	\\&&&&&\\\hline
+\end{tabular}
+}\caption{``Natural'' Rules for Propositional Logic}
+\label{tab:logic}
+\end{table}
+When we introduced axioms in the preceding sections, it is understood that such axioms are intended to serve as stable premises for logical conclusions which we call theorems. See, e.g., \cite{moura2010} for a list of some basic rules of inference that may be used to deduce theorems from the axioms of a given formal system.  In this paper, these are the rules of standard propositional logic \cite{klement0000}, Table~\ref{tab:logic}, etc.  Additional rules may be necessary for special cases, e.g., introduction and elimination of universal and existential quantifiers \cite{prawitz2006}.
 
 When we use the symbols
 \begin{equation}
@@ -1309,7 +1341,7 @@ Kurt G{\"o}del has shown that no ``meta'' logic is necessary to express such a s
 \subsection{Death toll climbs}
 \begin{figure}
 	\centering
-	\includegraphics[width=0.8\textwidth]{mmm.jpg}
+	\includegraphics[width=0.8\textwidth]{images/mmm.jpg}
 	\caption{The Cabal}
 	\label{figcabal}
 \end{figure}
@@ -1343,7 +1375,7 @@ Now going back to our personal experience, the eve of the 22nd of each month see
 
 \begin{wrapfigure}[10]{L}{1in}
 	\centering
-	\includegraphics[width=0.75in]{2-of-spades.png}
+	\includegraphics[width=0.75in]{images/2-of-spades.png}
 	\caption{Deuce of Spades}
 	\label{2spades}
 \end{wrapfigure}
@@ -1356,7 +1388,7 @@ The number 22 is a double-deuce, or, as the Finns count cards (or pips on a die)
 
 \begin{wrapfigure}[10]{R}{1in}
 	\centering
-	\includegraphics[width=0.75in]{Coat_of_arms_of_Finland.png}
+	\includegraphics[width=0.75in]{images/Coat_of_arms_of_Finland.png}
 	\caption{Suomen vaakuna}
 	\label{eduskunta}
 \end{wrapfigure}
@@ -1507,23 +1539,23 @@ I want no part of it, and I don't care what your politics are, either, whether y
 And as to the aforementioned Title 18 U.S.C., \S922, \P\P(d)(4), there is no dawn's early light as long as an evil statute like this stands on the books.  You who passed this law have forever extinguished the lights of liberty, and replaced our beloved national anthem with the 137th Psalm.  As you have done to us, the innocent ones, so let it be done to you for eternity.  The flag of the United States of America will never be raised by my hand or on my property, nor will my voice ever be heard to sing the \textit{The Star-Spangled Banner} \cite{key1814star}, as long as a wicked law like that stands on the books, and as long as those who passed it and continue to maintain it and enforce it have not rendered due account for their evil deeds.
 \begin{figure}
 \noindent\begin{minipage}{0.45\textwidth}\centering
-	\includegraphics[width=1.0\textwidth]{Carl-Jung-mod.jpg}
+	\includegraphics[width=1.0\textwidth]{images/Carl-Jung-mod.jpg}
 	\end{minipage}\hskip 0.10\textwidth\begin{minipage}{0.45\textwidth}\centering
-	\includegraphics[width=1.0\textwidth]{Sigmund_Freud.jpg}
+	\includegraphics[width=1.0\textwidth]{images/Sigmund_Freud.jpg}
 	\end{minipage}\\
 	\noindent\begin{minipage}{0.45\textwidth}\centering
-	\includegraphics[width=1.0\textwidth]{585px-Carl_Jung_signature.png}
+	\includegraphics[width=1.0\textwidth]{images/585px-Carl_Jung_signature.png}
 	\end{minipage}\hskip 0.10\textwidth\begin{minipage}{0.45\textwidth}\centering
-	\includegraphics[width=1.0\textwidth]{683px-FreudSignature.png}
+	\includegraphics[width=1.0\textwidth]{images/683px-FreudSignature.png}
 	\end{minipage}
 	\caption[Adjudicated as a mental defective]{Pre-WWI Austrian psychiatry \cite{unknown1909,halberstadt1940,jung-sig,freud-sig,jung-sig-src,freud-sig-src}: ``Adjudicated as a mental defective.'' Unlawful to possess a firearm or any ``ammunition'' \textit{for life} under penalty of fines and up to ten years' imprisonment.}
 \end{figure}
 
 \begin{figure}
 \noindent\begin{minipage}{0.45\textwidth}\centering
-	\includegraphics[width=1.0\textwidth]{IMG_20171206_151214.jpg}
+	\includegraphics[width=1.0\textwidth]{images/IMG_20171206_151214.jpg}
 	\end{minipage}\hskip 0.10\textwidth\begin{minipage}{0.45\textwidth}\centering
-	\includegraphics[width=1.0\textwidth]{IMG_20171206_151246.jpg}
+	\includegraphics[width=1.0\textwidth]{images/IMG_20171206_151246.jpg}
 	\end{minipage}
 	\caption[Fee-for-service records]{Fee-for-service record \cite{asp2017}: ``Oh, no, we didn't include \textit{those} records.  That's another \$20 from another department, and if we ever catch you with a firearm you will be imprisoned for life if you aren't shot on sight!''}
 \end{figure}
